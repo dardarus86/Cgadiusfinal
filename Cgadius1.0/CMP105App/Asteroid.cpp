@@ -1,12 +1,16 @@
+///////////////////////////////               ASTEROID.CPP                   /////////////////////////////////////
+///////////////////////////////               COMMENTING COMPLETE            /////////////////////////////////////
+
+//single include
 #include "Asteroid.h"
 
-Asteroid::Asteroid()
-{
-}
+// constructor/deconstructor empty
+Asteroid::Asteroid(){}
+Asteroid::~Asteroid(){}
 
-Asteroid::~Asteroid()
-{}
-
+//Function:  Used to move the object and check to see if asteroids are hitting top or bottom of screen
+//Parameter: Deltatime
+//output:    None
 void Asteroid::update(float dt)
 {
 	move(velocity*dt);

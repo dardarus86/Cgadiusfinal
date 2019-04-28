@@ -1,5 +1,8 @@
-#pragma once
+///////////////////////////////               LEVEL.H                           /////////////////////////////////////
+///////////////////////////////               COMMENTING COMPLETE               /////////////////////////////////////
 
+#pragma once
+// .h includes
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Framework/Input.h"
@@ -14,58 +17,63 @@
 #include "Enemy.h"
 #include "Wall.h"
 #include "Player.h"
-#include <string.h>
+// library includes
 #include <string>
-#include <iostream>
 
-
+// Main level class for the game
 class Level{
 public:
 	Level(sf::RenderWindow* hwnd, Input* in, GameState *state);
 	~Level();
 
+	// Handling any input from the user
 	void handleInput(float dt);
+	// Updating the view and updating all the manager classes
 	void update(float dt);
+	// Renders all the objects from every class
 	void render();
+	// For the level timer so it only begins once the user enters the level and not on menu at the beginning
 	bool clockstarted =false;
 
 private:
-	// Default functions for rendering to the screen.
+	// Default functions for rendering to the screen.. Thanks Paul!
 	void beginDraw();
 	void endDraw();
+	// Used in the game state changes from menu to level, level to credits
 	GameState* gameState;
 	// Default variables for level class.
 	sf::RenderWindow* window;
 	Input* input;
-	//bullet	
-	//View
+	// View objects for the main screen and the top of the screen ofr scoring,timer etc
 	sf::View view1;
 	sf::View scoreview;
-	//Sound+Music
+	// Sound+Music
 	AudioManager audioManager;
-	//background
+	// Background
 	GameObject background;
 	sf::Texture backgroundtexture;
-	//player
+	// Player
 	Player player;
 	sf::Texture playertexture;
-	//enemy
+	// Enemy
 	sf::Texture enemytexture;
-	//wall(white collidable wall objects in level)
+	
+	// Objects used for the getters in the managers to get access to other manangers vectors
 	AsteroidManager asteroidManager;
 	WallManager wallManager;
 	EnemyManager enemyManager;
 	BulletManager bulletManager;
 	
-	//text
+	// Text
 	sf::Font font;
 	sf::Text score;
 	sf::Text time;
 	sf::Text timer;
-	sf::Text lives;
+	// Unable to get this drawing. Probably missing something simple
 	sf::Text pauseText;
 	sf::Clock clock;
 	sf::Time time1;
+	// Used for clock
 	float seconds;
 	
 };

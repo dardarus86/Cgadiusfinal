@@ -1,11 +1,11 @@
+///////////////////////////////               WALLMANAGER.CPP                   /////////////////////////////////////
+///////////////////////////////               COMMENTING COMPLETE               /////////////////////////////////////
+
+//single include
 #include "WallManager.h"
 
-//collisons to be checked
 
-// wall -> asteroids
-// wall -> enemies
-
-
+//setting up the wall vector with a texture and setting a collision box for each object
 WallManager::WallManager()
 {
 	wall1texture.loadFromFile("gfx/wall1.png");
@@ -16,17 +16,16 @@ WallManager::WallManager()
 		walls1[i].setTexture(&wall1texture);
 		walls1[i].setSize(sf::Vector2f(150, 125));
 		walls1[i].setCollisionBox(0, 0, 150, 125);
-		walls1[i].setOutlineColor(sf::Color::Magenta);
-		
 	}
 }
 
 WallManager::~WallManager() {}
 
-//spawn the walls(collidable segments the player can hit)
+//Function:  Spawning the walls in set positions 
+//Parameter: None
+//output:    None
 void WallManager::spawn()
 {
-
 	walls1[0].setPosition(450, 340);
 	walls1[1].setPosition(1210, 105);
 	walls1[2].setPosition(1210, 340);
@@ -44,7 +43,9 @@ void WallManager::spawn()
 
 }
 
-//Render all alive asteroids
+//Function:  Render all alive walls
+//Parameter: RenderWindow
+//output:    None
 void WallManager::render(sf::RenderWindow* window)
 {
 	for (int i = 0; i < walls1.size(); i++)

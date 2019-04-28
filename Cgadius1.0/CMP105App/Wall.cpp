@@ -1,9 +1,10 @@
+///////////////////////////////               WALL.CPP                          /////////////////////////////////////
+///////////////////////////////               COMMENTING COMPLETE               /////////////////////////////////////
+
+//single include
 #include "Wall.h"
 
-Wall::Wall()
-{
-}
-
-Wall::~Wall()
-{}
+//an action filled class right here!
+Wall::Wall(){}
+Wall::~Wall(){}
 

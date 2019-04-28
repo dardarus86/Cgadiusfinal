@@ -1,13 +1,13 @@
+///////////////////////////////               CREDITS.CPP                       /////////////////////////////////////
+///////////////////////////////               COMMENTING COMPLETE               /////////////////////////////////////
+
+//single include
 #include "Credits.h"
 
-Credits::Credits(sf::RenderWindow* hwnd, Input* in, GameState *state)
+//constructor. Removed the input and gamestate as no input and game state does not change. Creates animation and two texts for the screen
+Credits::Credits(sf::RenderWindow* hwnd)
 {
-
 	window = hwnd;
-	input = in;
-	gameState = state;
-
-
 
 	// render text
 	if (!font.loadFromFile("font/galactic.ttf"))
@@ -34,11 +34,9 @@ Credits::Credits(sf::RenderWindow* hwnd, Input* in, GameState *state)
 	background.addFrame(sf::IntRect(5500, 0, 500, 333));
 	background.addFrame(sf::IntRect(6000, 0, 500, 333));
 	background.setFrameSpeed(0.1f);
-
 	background.getCurrentFrame();
 
 	text.setFont(font);
-	
 	text.setCharacterSize(44);
 	text.setFillColor(sf::Color::Red);
 	text.setPosition(350, 50);
@@ -47,35 +45,31 @@ Credits::Credits(sf::RenderWindow* hwnd, Input* in, GameState *state)
 	text2.setString("Please maximize then return size to fix the screen issue. Game should really be called 'BUGADIUS' ");
 	text2.setCharacterSize(16);
 	text2.setPosition(10, 20);
-
-
 }
 
+Credits::~Credits(){}
 
-Credits::~Credits()
-{
-
-}
-
-
-
-
+//Function:  used for setting the finalscore using he player getscore function. Does not work
+//Parameter: reference to player
+//output:    None
 void Credits::playerScore(Player & player)
 {
 	finalScore = player.getScore();
 }
 
-// Update game objects
+//Function:  Animating the background and attemping to have the string use the final score variable
+//Parameter: deltatime
+//output:    None
 void Credits::update(float dt )
 {
 	text.setString("Thank you for playing\n Your Final score was: " + finalScore);
 	backgroundobj.setTextureRect(background.getCurrentFrame());
 	background.animate(dt);
-
-
 }
 
-// Render level
+//Function:  renders the background and two text objects
+//Parameter: None
+//output:    None
 void Credits::render()
 {
 	beginDraw();
@@ -85,13 +79,17 @@ void Credits::render()
 	endDraw();
 }
 
-// Begins rendering to the back buffer. Background colour set to light blue.
+//Function:  Begins rendering to the back buffer. Background colour set to light blue. Good job Paul!
+//Parameter: None
+//output:    None
 void Credits::beginDraw()
 {
 	window->clear(sf::Color(100, 149, 237));
 }
 
-// Ends rendering to the back buffer, and swaps buffer to the screen.
+//Function:  Ends rendering to the back buffer, and swaps buffer to the screen. Good job Paul!
+//Parameter: None
+//output:    None
 void Credits::endDraw()
 {
 	window->display();

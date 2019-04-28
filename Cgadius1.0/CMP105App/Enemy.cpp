@@ -1,9 +1,12 @@
+///////////////////////////////               ENEMY.CPP                         /////////////////////////////////////
+///////////////////////////////               COMMENTING COMPLETE               /////////////////////////////////////
+
+//single include
 #include "Enemy.h"
 
+// creating the animation from the spritesheet added in Enemymanager
 Enemy::Enemy()
 {
-	
-
 	idle.addFrame(sf::IntRect(0, 0, 432, 367));
 	idle.addFrame(sf::IntRect(432, 0, 432, 367));
 	idle.addFrame(sf::IntRect(864, 0, 432, 367));
@@ -20,16 +23,17 @@ Enemy::Enemy()
 	explosion.addFrame(sf::IntRect(480, 384, 79, 79));
 	explosion.addFrame(sf::IntRect(540, 384, 79, 79));
 	explosion.setFrameSpeed(0.03f);
-
-	
+		
 	currentAnimation = &idle;
 	setTextureRect(currentAnimation->getCurrentFrame());
 
 }
 
-Enemy::~Enemy()
-{}
+Enemy::~Enemy(){}
 
+//Function:  Used for setting up the animation, mvement and collision check with top and bottom of level
+//Parameter: Deltatime
+//output:    None
 void Enemy::update(float dt)
 {
 	currentAnimation->animate(dt);
@@ -39,15 +43,16 @@ void Enemy::update(float dt)
 	{
 		velocity = -velocity;
 	}
-
 }
 
+//Function:  if the enemy collision function is called, changes the current animation and stops them moving. not working properly
+//Parameter: Deltatime
+//output:    None
 void Enemy::collision(float dt)
 {
-	
 	currentAnimation = &explosion;
 	setTextureRect(explosion.getCurrentFrame());
-		velocity.y = 0;
+	velocity.y = 0;
 }
 
 

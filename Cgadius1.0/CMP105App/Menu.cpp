@@ -1,24 +1,26 @@
+///////////////////////////////               MENU.CPP                          /////////////////////////////////////
+///////////////////////////////               COMMENTING COMPLETE               /////////////////////////////////////
+
+//single include
 #include "Menu.h"
 
-
-
+// constructor setting the audio files,backgroundtexture, background animation and text 
+// Text placement for score, time and populationg each manager.spawn function
 Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState *state)
 {
-
 	window = hwnd;
 	input = in;
 	gameState = state;
 	audioManager.addMusic("sfx/menu.ogg", "menu");
 	audioManager.addSound("sfx/enter.wav", "enter");
-
-
+	
 	// render text
 	if (!font.loadFromFile("font/galactic.ttf"))
 	{
 		std::cout << "Error loading font/n";
 	}
-	backgroundtexture.loadFromFile("gfx/menu.png");
 
+	backgroundtexture.loadFromFile("gfx/menu.png");
 	backgroundobj.setTexture(&backgroundtexture);
 	backgroundobj.setPosition(0, 0);
 	backgroundobj.setSize(sf::Vector2f(1200, 800));
@@ -65,14 +67,11 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState *state)
 	audioManager.playMusicbyName("menu");
 }
 
+Menu::~Menu(){}
 
-Menu::~Menu()
-{
-
-}
-
-
-// handle user input
+//Function:  used for handle input of user
+//Parameter: deltatime
+//output:    None
 void Menu::handleInput(float dt)
 {
 	if (input->isKeyDown(sf::Keyboard::Enter))
@@ -84,17 +83,18 @@ void Menu::handleInput(float dt)
 	}
 }
 
-// Update game objects
+//Function:  used for updating the animation
+//Parameter: deltatime
+//output:    None
 void Menu::update(float dt)
 {
-
 	backgroundobj.setTextureRect(background.getCurrentFrame());
 	background.animate(dt);
-
-
 }
 
-// Render level
+//Function:  Rendering the text and background
+//Parameter: None
+//output:    None
 void Menu::render()
 {
 	beginDraw();
@@ -106,13 +106,13 @@ void Menu::render()
 	endDraw();
 }
 
-// Begins rendering to the back buffer. Background colour set to light blue.
+// Begins rendering to the back buffer. Background colour set to light blue. Thank you Paul!
 void Menu::beginDraw()
 {
 	window->clear(sf::Color(100, 149, 237));
 }
 
-// Ends rendering to the back buffer, and swaps buffer to the screen.
+// Ends rendering to the back buffer, and swaps buffer to the screen. Thank you Paul!
 void Menu::endDraw()
 {
 	window->display();

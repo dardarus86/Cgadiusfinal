@@ -1,47 +1,55 @@
+///////////////////////////////               BULLETMANAGER.H                   /////////////////////////////////////
+///////////////////////////////               COMMENTING COMPLETE               /////////////////////////////////////
+
 #pragma once
-#include "Framework/GameObject.h"
-#include "Framework/Input.h"
-#include "Bullet.h"
-#include <math.h>
-#include <iostream>
-#include "Framework/Collision.h"
-#include "WallManager.h"
-#include <vector>
-#include <SFML/Audio.hpp>
+//.h includes
 #include "Framework/AudioManager.h"
+#include "Framework/Collision.h"
+#include "Framework/GameObject.h"
+#include <SFML/Audio.hpp>
+#include "Bullet.h"
+#include "WallManager.h"
+// library includes
+#include <vector>
 
-
+//This class is used for spawning, controlling collision with Bullets/Walls
 class BulletManager : public GameObject
 {
 public:
 	BulletManager();
 	~BulletManager();
 
-
+	//used to spawn bullets at the players location
 	void spawn(float x, float y);
+	// two functions to get and set the players positions
 	float getPlayerPosX();
 	void setPlayerPosX(float x);
-	void update(const float& dt);
+	//collision check done here
+	void update(float dt);
+	//for despawning the bullets to be used again
 	void deathCheck();
+	// drawing the bullets to the screen in level.cpp
 	void render(sf::RenderWindow* window);
+
+	//function to return the values of the bullet vector
 	std::vector<Bullet>* getBullets() { return  &bullet; }
-	std::vector<Bullet>& getEnemyBullets() { return eBullet; }
 	float PlayerX;
 
+	// function to get access to the WallManager class
 	void setWallManager(WallManager* wm)
 	{
 		this->wallManager = wm;
 	}
 
-
 private:
 
+	//vector used to create multiple bullets
 	std::vector<Bullet> bullet;
-	std::vector<Bullet> eBullet;
+	//texture for bullet
 	sf::Texture texture;
-	sf::Texture enemyTexture;
+	//Audiomanager used for the bullet sound effect
 	AudioManager audioManager;
-	sf::RenderWindow* window;
+	//object pointer used in the set function above
 	WallManager* wallManager;
 	
 };
